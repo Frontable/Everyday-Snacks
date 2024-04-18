@@ -67,10 +67,10 @@ public class Main {
                 Row row = sheet.getRow(i);
                 int id = (int) row.getCell(0).getNumericCellValue();
                 String name = row.getCell(1).getStringCellValue();
-                double basicDiscount = row.getCell(2).getNumericCellValue();
-                double additionalDiscountBelow10k = row.getCell(3).getNumericCellValue();
-                double additionalDiscountAbove10k = row.getCell(4).getNumericCellValue();
-                clients[i - 1] = new Client(id, name, basicDiscount, additionalDiscountBelow10k, additionalDiscountAbove10k);
+                String basicDiscountPercentage = row.getCell(2).getStringCellValue();
+                String additionalDiscountAbove10kPercentage = row.getCell(3).getStringCellValue();
+                String additionalDiscountAbove30kPercentage = row.getCell(4).getStringCellValue();
+                clients[i - 1] = new Client(id, name, basicDiscountPercentage, additionalDiscountAbove10kPercentage, additionalDiscountAbove30kPercentage);
             }
 
             return clients;
@@ -79,6 +79,9 @@ public class Main {
             return new Client[0];
         }
     }
+
+
+
 
     private static void printOrderSummary(Order order) {
         order.calculatePrices(); // Calculate prices based on client discounts
