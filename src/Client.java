@@ -1,16 +1,26 @@
 public class Client {
     private int id;
     private String name;
-    private double basicDiscount;
-    private double additionalDiscountAbove10k;
-    private double additionalDiscountAbove30k;
+    private double basicDiscountPercentage;
+    private double additionalDiscountAbove10kPercentage;
+    private double additionalDiscountAbove30kPercentage;
 
-    public Client(int id, String name, double basicDiscount, double additionalDiscountAbove10k, double additionalDiscountAbove30k) {
+    public Client(int id, String name, String basicDiscountPercentage, String additionalDiscountAbove10kPercentage,
+                  String additionalDiscountAbove30kPercentage) {
         this.id = id;
         this.name = name;
-        this.basicDiscount = basicDiscount;
-        this.additionalDiscountAbove10k = additionalDiscountAbove10k;
-        this.additionalDiscountAbove30k = additionalDiscountAbove30k;
+        this.basicDiscountPercentage = parsePercentage(basicDiscountPercentage);
+        this.additionalDiscountAbove10kPercentage = parsePercentage(additionalDiscountAbove10kPercentage);
+        this.additionalDiscountAbove30kPercentage = parsePercentage(additionalDiscountAbove30kPercentage);
+    }
+
+    private double parsePercentage(String percentage) {
+        if (percentage.endsWith("%")) {
+            percentage = percentage.substring(0, percentage.length() - 1);
+            return Double.parseDouble(percentage) / 100;
+        } else {
+            throw new IllegalArgumentException("Invalid percentage format: " + percentage);
+        }
     }
 
     public String getName() {
@@ -18,16 +28,16 @@ public class Client {
     }
 
     public double getBasicDiscount() {
-        return basicDiscount;
+        return basicDiscountPercentage;
     }
 
     public double getAdditionalDiscount(double orderTotal) {
         if (orderTotal < 10000) {
             return 0;
         } else if (orderTotal < 30000) {
-            return additionalDiscountAbove10k;
+            return additionalDiscountAbove10kPercentage;
         } else {
-            return additionalDiscountAbove30k;
+            return additionalDiscountAbove30kPercentage;
         }
     }
 }

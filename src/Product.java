@@ -1,4 +1,3 @@
-import java.math.RoundingMode;
 
 public class Product {
     private int id;

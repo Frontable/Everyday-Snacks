@@ -9,11 +9,11 @@ public class Main {
     };
 
     private static final Client[] clients = {
-            new Client(1, "ABC Distribution", 0.05, 0.00, 0.02),
-            new Client(2, "DEF Foods", 0.04, 0.01, 0.02),
-            new Client(3, "GHI Trade", 0.03, 0.01, 0.03),
-            new Client(4, "JKL Kiosks", 0.02, 0.03, 0.05),
-            new Client(5, "MNO Vending", 0.00, 0.05, 0.07)
+            new Client(1, "ABC Distribution", "5%", "0%", "2%"),
+            new Client(2, "DEF Foods", "4%", "1%", "2%"),
+            new Client(3, "GHI Trade", "3%", "1%", "3%"),
+            new Client(4, "JKL Kiosks", "2%", "3%", "5%"),
+            new Client(5, "MNO Vending", "0%", "5%", "7%")
     };
 
     public static void main(String[] args) {
